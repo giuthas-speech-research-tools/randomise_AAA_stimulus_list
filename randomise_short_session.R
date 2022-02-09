@@ -28,6 +28,7 @@ randomise_short_session <- function(words, calibration, repeats = 2, half_way_br
 	tokens = apply(data.frame(tokens, counters), 1, paste, collapse=" ") 
 	
 	m = length(tokens)
+	l = length(calibration)
 
 	apply(data.frame(tokens, counters), 1, paste, collapse=" ")	
 
@@ -36,15 +37,15 @@ randomise_short_session <- function(words, calibration, repeats = 2, half_way_br
 		calibration = apply(expand.grid(calibration, calibration_counters), 1, paste, collapse = " ")
 
 		tokens = c(
-			calibration, tokens[1:(m/2)], calibration,
-			calibration, tokens[(m/2+1):(m)], calibration
+			calibration[1:l], tokens[1:(m/2)], calibration[(l+1):(2*l)],
+			calibration[(2*l+1):(3*l)], tokens[(m/2+1):(m)], calibration[(3*l+1):(4*l)]
 		)
 	}
 	else {
 		calibration_counters = c(".","..")
 		calibration = apply(expand.grid(calibration, calibration_counters), 1, paste, collapse = " ")
 
-		tokens = c(calibration, tokens, calibration)
+		tokens = c(calibration[1:l], tokens, calibration[(l+1):(2*l)])
 	}
 	
 	return(tokens)

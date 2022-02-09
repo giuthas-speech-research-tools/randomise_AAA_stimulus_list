@@ -1,7 +1,7 @@
 
-words = read.csv("stimuli", header=F, sep="\t", fill = F, quote="") 
+words = read.csv("stimuli.csv", header=F, sep="\t", fill = F) 
 words = as.vector(words$V1)
-calibration = read.csv("calibration", header=F, sep="\t", fill = F, quote="") 
+calibration = read.csv("calibration.csv", header=F, sep="\t", fill = F) 
 calibration = as.vector(calibration$V1)
 
 # For now Participant 1 = 001
