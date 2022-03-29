@@ -30,8 +30,6 @@ randomise_short_session <- function(words, calibration, repeats = 2, half_way_br
 	m = length(tokens)
 	l = length(calibration)
 
-	#apply(data.frame(tokens, counters), 1, paste, collapse=" ")	
-
 	if (half_way_break) {
 		calibration_counters = c(".","..","...", "....")
 		calibration = apply(expand.grid(calibration, calibration_counters), 1, paste, collapse = " ")
