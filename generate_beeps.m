@@ -33,7 +33,7 @@ function generate_beeps(prefix, min, max, beep_len, beep_f, nro_beeps, seed)
     end
     
     for i = 1:nro_beeps
-        f_name = [prefix sprintf('_%d_%0.3d', seed, i) '.wav'];
+        f_name = strcat(prefix, sprintf('_%d_%0.3d', seed, i), '.wav');
         delay = randi(interval, 1);
         audiowrite(f_name, audio(delay:end), fs);
     end
