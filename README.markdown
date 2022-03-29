@@ -4,10 +4,14 @@
 
 Download or fork the repository somewhere on your system. 
 
+NOTE: This is only an quick hack. The development will shortly move
+to a fully Python based version at 
+[Delayed Naming Stimulus Generation](https://github.com/giuthas/delayed_naming_stimulus_gen).
+
 
 ### Prerequisites
 
-A recent installation of R would be good.
+A recent installation of both R and Matlab would be good.
 
 ### Running the example
 

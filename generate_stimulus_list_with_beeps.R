@@ -7,7 +7,7 @@ calibration = as.vector(calibration$V1)
 # For now Participant 1 = 001
 
 set.seed(1) # increment the seed for each recording session/participant
-tokens <- randomise_short_session_with_beeps(words, calibration, repeats=3, )
+tokens <- randomise_short_session_with_beeps(words, calibration, repeats=1)
 
 # AAA prompts
 # Remember to change the newlines with emacs (c-x ret f dos).
