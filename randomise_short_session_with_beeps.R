@@ -1,4 +1,4 @@
-randomise_short_session <- function(words, calibration, repeats = 2, half_way_break = FALSE){
+randomise_short_session_with_beeps <- function(file_prefix, words, calibration, repeats = 2, half_way_break = FALSE){
 	n=length(words)
 	
 	indeces = matrix(, nrow=n, ncol=repeats)
@@ -33,7 +33,7 @@ randomise_short_session <- function(words, calibration, repeats = 2, half_way_br
 
     # Generate beep wav-file names and combine them to a table with the tokens.
     # Beep files are [prefix]_[seed]_[running number].wav.
-	beeps = apply(data.frame(sprintf("ex2_P3_day7_%03d", 1:(m)), ".wav"), 1, paste, collapse="")
+	beeps = apply(data.frame(file_prefix, sprintf("_%03d", 1:(m)), ".wav"), 1, paste, collapse="")
 	tokens = cbind(prompt = tokens, bmp = " ", wav = beeps)
 
 	if (half_way_break) {

@@ -4,7 +4,7 @@ function generate_beeps(prefix, min, max, beep_len, beep_f, nro_beeps, seed)
 %gen_beeps_ex2 Generate stimulus beeps for experiment 2
 %   Generate delayed beeps for naming experiments in AAA.
 %   Filenames will be [prefix]_[seed]_[running number].wav.
-%
+
 %   Arguments are (where relevant in seconds): 
 %   prefix = filename prefix from user. 
 %   min = minimum length of wait i.e. silence in the beginning
