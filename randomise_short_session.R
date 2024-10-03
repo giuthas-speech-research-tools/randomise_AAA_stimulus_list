@@ -1,4 +1,6 @@
-randomise_short_session <- function(words, calibration, repeats = 2, half_way_break = FALSE){
+randomise_short_session <- function(
+	words, calibration, end_calibration,
+	repeats = 2, half_way_break = FALSE) {
 	n=length(words)
 	
 	indeces = matrix(, nrow=n, ncol=repeats)
@@ -9,10 +11,10 @@ randomise_short_session <- function(words, calibration, repeats = 2, half_way_br
 		
 		# If last token of previous block and the first token of this block 
 		# would be the same, regenerate this block.
-		if (indeces[n,i-1] == indeces[1,i]){
+		if (indeces[n,i-1] == indeces[1,i]) {
 			next
 		}
-		i = i+1
+		i <- i+1
 	}
 	indeces = as.vector(indeces)
 	tokens = words[indeces]
@@ -24,27 +26,36 @@ randomise_short_session <- function(words, calibration, repeats = 2, half_way_br
 		counters = c(counters, counter)
 	}
 
-	counters = as.vector(matrix(c(".","..","..."), nrow=n, ncol=repeats, byrow=T))
-	tokens = apply(data.frame(tokens, counters), 1, paste, collapse=" ") 
+	counters = as.vector(matrix(counters, nrow=n, ncol=repeats, byrow=T))
+	tokens = apply(data.frame(tokens, counters), 1, paste, collapse=" ")
 	
 	m = length(tokens)
 	l = length(calibration)
 
 	if (half_way_break) {
-		calibration_counters = c(".","..","...", "....")
+		calibration_counters <- c(".", "..", "...", "....")
 		calibration = apply(expand.grid(calibration, calibration_counters), 1, paste, collapse = " ")
 
-		tokens = c(
+		tokens <- c(
 			calibration[1:l], tokens[1:(m/2)], calibration[(l+1):(2*l)],
 			calibration[(2*l+1):(3*l)], tokens[(m/2+1):(m)], calibration[(3*l+1):(4*l)]
 		)
 	}
 	else {
-		calibration_counters = c(".","..")
-		calibration = apply(expand.grid(calibration, calibration_counters), 1, paste, collapse = " ")
+		calibration_counters <- c(".", "..")
+		calibration <- apply(expand.grid(calibration, calibration_counters),
+			1, paste, collapse = " ")
 
 		tokens = c(calibration[1:l], tokens, calibration[(l+1):(2*l)])
 	}
 	
+	if (length(end_calibration) > 0){
+		p = length(end_calibration)
+		calibration_counters <- c(".", "..")
+		end_calibration <- apply(expand.grid(end_calibration, calibration_counters),
+			1, paste, collapse = " ")
+		tokens = c(end_calibration[1:p], tokens, end_calibration[p+1:2*p])
+	}
+
 	return(tokens)
 }
