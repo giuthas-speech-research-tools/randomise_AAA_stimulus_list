@@ -1,7 +1,9 @@
 # Run this to get write_short_session working.
 source("write_short_session.R")
 
-# Load the files and set the prefix and suffix below.
+# Load the files and set the prefix and suffix below. It is a good idea to put
+# the stimulus and calibration files to where ever the data is going to live
+# at. And also to make a new copy of this file for each dataset.
 words <- read.csv("stimuli.csv", header = F, sep = "\t", fill = F)
 words <- as.vector(words$V1)
 
