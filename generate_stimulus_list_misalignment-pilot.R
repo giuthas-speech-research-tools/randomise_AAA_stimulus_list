@@ -33,4 +33,22 @@ write_short_session(
     words = words, calibration = calibration, end_calibration = end_calibration,
     repeats = 2, half_way_break = T)
 
+# Actual participants are numbers up from 3 to keep things random. 
+prefix = "misalignment/alignment-"
+suffix = ".csv"
+
+write_short_session(
+    prefix, suffix, participant = 3,
+    words = words, calibration = calibration, end_calibration = end_calibration,
+    repeats = 2, half_way_break = T)
+
+# fixed typo in stimuli
+words <- read.csv("misalignment/stimuli-v1.1.csv", header = F, sep = "\t", fill = F)
+words <- as.vector(words$V1)
+
+write_short_session(
+    prefix, suffix, participant = 4,
+    words = words, calibration = calibration, end_calibration = end_calibration,
+    repeats = 2, half_way_break = T)
+
 # Remember to change the newlines with emacs (c-x ret f dos).
